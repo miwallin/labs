@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="sv-SE">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">    
+	<link rel="stylesheet" href="styles.css">
+	<title>Skapa konto</title>
+</head>
+<body>
+	<header>
+		<h2>Bli medlem</h2>
+		<a href="#navigation">Meny</a>
+	</header>
+	<div></div>
+	<main>
+		<h1>Bli medlem gratis</h1>
+		<form>
+			<label class="namn-generisk">Namn:</label>
+			<label class="namn-specifik" for="fnamn">Förnamn:</label>
+			<input type="text" id="fname" name="fname" placeholder="Förnamn" required>
+			<label class="namn-specifik" for="enamn">Efternamn:</label>
+			<input type="text" id="enamn" name="enamn" placeholder="Efternamn" required>
+			<br/>
+			<label for="email">Email:</label>
+			<input type="email" id="email" name="email" placeholder="din.email@exempel.se" required>
+			<br/>
+			<label for="pass">Lösenord:</label>
+			<input type="password" id="pass" name="pass" placeholder="Välj lösenord" required minlength="8" maxlength="32">
+			<div class="kryssbox">
+				<label class="kryssbox" for="nyhetsbrev">
+				<input type="checkbox" checked="checked" id="nyhetsbrev" name="nyhetsbrev"> Prenumerera på vårt nyhetsbrev.</label> 
+			</div>
+			<div class="kryssbox">
+				<label for="villkor-policy">
+				<input type="checkbox" checked="checked" id="villkor-policy" name="villkor-policy" required> Genom att skapa ett konto godkänner du våra <a href="/villkor.html">villkor</a> och <a href="/integritetspolicy.html">integritetspolicy</a>.</label>
+			</div>
+			<input type="submit" value="Skapa konto">
+			<p>Har du redan ett konto? <a href="/signin.html">Logga in</a></p>
+		</form>
+	</main>
+	<div></div>
+	<nav id="navigation">
+		<ul>
+			<li>Startsida</li>
+			<li>Om oss</li>
+			<li>Kontakt</li>
+			<li>Inloggning</li>
+		</ul>
+	</nav>
+</body>
+</html>
