@@ -11,3 +11,7 @@ textarea {
 #contacts-sidebar {
     max-width: 380px;
 }
+
+.carousel {
+    max-width: 800px;
+}
