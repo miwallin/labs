@@ -4,6 +4,10 @@ main {
     color: #5a5a5a;
 }
 
+textarea {
+    height: 5rem;
+}
+
 #contacts-sidebar {
     max-width: 380px;
 }

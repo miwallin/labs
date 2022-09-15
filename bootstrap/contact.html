@@ -39,69 +39,79 @@
           <form>
             <fieldset>
               <legend>Contact us about common issues</legend>
-              <div>
+              <div class="mb-3">
                 <label for="issue" class="form-label">Select issue:</label>
-                <select name="issue" id="issue" class="form-select">
+                <select name="issue" id="issue" class="form-select" required>
                   <option value="1">Common Issue 1</option>
                   <option value="2">Common Issue 2</option>
                   <option value="3">Common Issue 3</option>
                   <option value="4">Common Issue 4</option>
                 </select>
               </div>
-              <div>
+              <div class="mb-3">
                 <label for="description" class="form-label">Detailed description:</label>
-                <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+                <textarea class="form-control" name="description" id="description"></textarea>
               </div>
-              <div>
+              <div class="mb-3">
+                <label for="name" class="form-label">Your name:</label>
+                <input type="text" class="form-control" name="name" id="name">
+              </div>
+              <div class="mb-3">
                 <label for="email" class="form-label">Your email:</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com">
+                <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
               </div>
-              <button type="submit">Send</button>
+              <button type="submit" class="btn btn-primary">Send</button>
             </fieldset>
           </form>
 
         </div>
         <div class="col d-flex flex-column align-items-stretch flex-shrink-0 bg-white" id="contacts-sidebar">
-          <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
-            <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+          <div class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
             <span class="fs-5 fw-semibold">Contactable People</span>
-          </a>
+          </div>
           <div class="list-group list-group-flush border-bottom scrollarea">
-            <a href="#" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
+            <div class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
               <div class="d-flex w-100 align-items-center justify-content-between">
                 <strong class="mb-1">Name Lastname</strong>
                 <small>Job title</small>
               </div>
-              <div class="col-10 mb-1 small">Phone number: 000-1112233<br/>Works for Department XYZ and handles issues with so and so.</div>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
+              <div class="col-10 mb-1 small">Works for Department XYZ and handles issues with so and so.<br/>Phone number: 000-1112231<br/>Email: <a href="mailto:name.lastname@sitename.com">name.lastname@sitename.com</a></div>
+            </div>
+            <div class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
               <div class="d-flex w-100 align-items-center justify-content-between">
                 <strong class="mb-1">Name Lastname</strong>
                 <small>Job title</small>
               </div>
-              <div class="col-10 mb-1 small">Phone number: 000-1112233<br/>Works for Department XYZ and handles issues with so and so.</div>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
+              <div class="col-10 mb-1 small">Works for Department XYZ and handles issues with so and so.<br/>Phone number: 000-1112232<br/>Email: <a href="mailto:name.lastname@sitename.com">name.lastname@sitename.com</a></div>
+            </div>
+            <div class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
               <div class="d-flex w-100 align-items-center justify-content-between">
                 <strong class="mb-1">Name Lastname</strong>
                 <small>Job title</small>
               </div>
-              <div class="col-10 mb-1 small">Phone number: 000-1112233<br/>Works for Department XYZ and handles issues with so and so.</div>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
+              <div class="col-10 mb-1 small">Works for Department XYZ and handles issues with so and so.<br/>Phone number: 000-1112233<br/>Email: <a href="mailto:name.lastname@sitename.com">name.lastname@sitename.com</a></div>
+            </div>
+            <div class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
               <div class="d-flex w-100 align-items-center justify-content-between">
                 <strong class="mb-1">Name Lastname</strong>
                 <small>Job title</small>
               </div>
-              <div class="col-10 mb-1 small">Phone number: 000-1112233<br/>Works for Department XYZ and handles issues with so and so.</div>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
+              <div class="col-10 mb-1 small">Works for Department XYZ and handles issues with so and so.<br/>Phone number: 000-1112234<br/>Email: <a href="mailto:name.lastname@sitename.com">name.lastname@sitename.com</a></div>
+            </div>
+            <div class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
               <div class="d-flex w-100 align-items-center justify-content-between">
                 <strong class="mb-1">Name Lastname</strong>
                 <small>Job title</small>
               </div>
-              <div class="col-10 mb-1 small">Phone number: 000-1112233<br/>Works for Department XYZ and handles issues with so and so.</div>
-            </a>
+              <div class="col-10 mb-1 small">Works for Department XYZ and handles issues with so and so.<br/>Phone number: 000-1112235<br/>Email: <a href="mailto:name.lastname@sitename.com">name.lastname@sitename.com</a></div>
+            </div>
+            <div class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
+              <div class="d-flex w-100 align-items-center justify-content-between">
+                <strong class="mb-1">Name Lastname</strong>
+                <small>Job title</small>
+              </div>
+              <div class="col-10 mb-1 small">Works for Department XYZ and handles issues with so and so.<br/>Phone number: 000-1112236<br/>Email: <a href="mailto:name.lastname@sitename.com">name.lastname@sitename.com</a></div>
+            </div>
           </div>
         </div>
       </div>
