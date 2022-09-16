@@ -8,10 +8,18 @@ textarea {
     height: 5rem;
 }
 
+.carousel {
+    max-width: 800px;
+}
+
 #contacts-sidebar {
     max-width: 380px;
 }
 
-.carousel {
-    max-width: 800px;
+#flowers-text {
+    color: palevioletred;
+}
+
+#bike-text {
+    color: brown;
 }
