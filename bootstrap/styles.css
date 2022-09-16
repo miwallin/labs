@@ -1,25 +1,41 @@
+nav {
+    background-color: #95969f;
+    color: #44424d;
+}
 
-main {
+main, footer {
     padding: 1rem;
-    color: #5a5a5a;
+    color: #44424d;
+}
+
+footer {
+    color: #44424d;
 }
 
 textarea {
     height: 5rem;
 }
 
+.card-header {
+    background-color: #d4e3e7;
+}
+
 .carousel {
     max-width: 800px;
+}
+
+.flex-column h1 {
+    font-weight: bold;
 }
 
 #contacts-sidebar {
     max-width: 380px;
 }
 
-#flowers-text {
-    color: palevioletred;
+#contacts-sidebar .d-flex {
+    background-color: #d4e3e7;
 }
 
-#bike-text {
-    color: brown;
+#bike-text, #flowers-text {
+    color: #44424d;
 }
