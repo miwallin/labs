@@ -1,7 +1,12 @@
+nav {
+    background-color: aliceblue;
+}
+
 .tab-pane {
     text-align: center;
 }
 
-#kub {
-    text-align: start;
+.nav-link {
+    font-weight: bold;
+    color:mediumblue;
 }
