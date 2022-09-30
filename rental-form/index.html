@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="sv-SE">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">    
+	<link rel="stylesheet" href="styles.css">
+	<title>Uthyrning</title>
+</head>
+<body>
+	<main>
+		<h1>Pryluthyrning</h1>
+		<form id="hyr">
+			<fieldset>
+				<legend>Pryl</legend>
+				<label for="modell">Modell:</label>
+				<select id="modell" name="modell" required>
+					<option value="1">Modell 1</option>
+					<option value="2">Modell 2</option>
+					<option value="3">Modell 3</option>
+				</select>
+				<br/>
+				<div id="tillbehörsbox">
+					<div>
+						<label for="tb1">
+						<input type="checkbox" id="tb1" name="tb1"> Populärt tillbehör.</label> 
+					</div>
+					<div>
+						<label for="tb2">
+						<input type="checkbox" id="tb2" name="tb2"> Vanligt tillbehör.</label> 
+					</div>
+					<div>
+						<label for="tb3">
+						<input type="checkbox" id="tb3" name="tb3"> Ovanligt tillbehör</label>
+					</div>
+					<div>
+						<label for="tb4">
+						<input type="checkbox" id="tb4" name="tb4"> Sällsynt tillbehör</label>
+					</div>
+					<div>
+						<label for="tb0">
+						<input type="checkbox" id="tb0" name="tb0"> Jag vill inte hyra några tillbehör</label>
+					</div>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>Hyresperiod</legend>
+				<label for="startdatum">Hämtdatum</label>
+				<input type="date" name="startdatum" id="startdatum"/>
+				<label for="slutdatum">Returdatum</label>
+				<input type="date" name="slutdatum" id="slutdatum"/>
+			</fieldset>
+			<fieldset>
+				<legend>Dina uppgifter</legend>
+				<label for="namn">Namn:</label>
+				<input type="text" id="namn" name="namn" placeholder="Namn" required>
+				<br/>
+				<label for="telefon">Telefon:</label>
+				<input type="tel" id="telefon" name="telefon" placeholder="012-345 67 89" required>
+				<br/>
+				<label for="email">Email:</label>
+				<input type="email" id="email" name="email" placeholder="din.email@exempel.se" required>
+			</fieldset>
+			<input type="submit" value="Till betalning">
+		</form>
+	</main>
+	<script src="script.js"></script>
+</body>
+</html>
