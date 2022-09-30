@@ -11,7 +11,6 @@
 		<h1>Pryluthyrning</h1>
 		<form id="hyr">
 			<fieldset>
-				<legend>Pryl</legend>
 				<label for="modell">Modell:</label>
 				<select id="modell" name="modell" required>
 					<option value="1">Modell 1</option>
@@ -19,24 +18,24 @@
 					<option value="3">Modell 3</option>
 				</select>
 				<br/>
-				<div id="tillbehörsbox">
+				<div id="extras">
 					<div>
 						<label for="tb1">
-						<input type="checkbox" id="tb1" name="tb1"> Populärt tillbehör.</label> 
+						<input class="extra" type="checkbox" id="tb1" name="tb1"> Populärt tillbehör.</label> 
 					</div>
 					<div>
 						<label for="tb2">
-						<input type="checkbox" id="tb2" name="tb2"> Vanligt tillbehör.</label> 
+						<input class="extra" type="checkbox" id="tb2" name="tb2"> Vanligt tillbehör.</label> 
 					</div>
 					<div>
 						<label for="tb3">
-						<input type="checkbox" id="tb3" name="tb3"> Ovanligt tillbehör</label>
+						<input class="extra" type="checkbox" id="tb3" name="tb3"> Ovanligt tillbehör</label>
 					</div>
 					<div>
 						<label for="tb4">
-						<input type="checkbox" id="tb4" name="tb4"> Sällsynt tillbehör</label>
+						<input class="extra" type="checkbox" id="tb4" name="tb4"> Sällsynt tillbehör</label>
 					</div>
-					<div>
+					<div id="inga">
 						<label for="tb0">
 						<input type="checkbox" id="tb0" name="tb0"> Jag vill inte hyra några tillbehör</label>
 					</div>

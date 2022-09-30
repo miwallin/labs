@@ -1,18 +1,28 @@
 :root {
-    --main-bg-color: #f2d5f8;
-    --secondary-color: #bfabcb;
-    --tertiary-color: #8d89a6;
-    --text-on-dark: #e6c0e9;
+    --main-bg-color: #fcba12;
+    --secondary-color: #fed777;
+    --tertiary-color: #a77802;
+    --bright: #fff5dc;
+    --dark: #342809;
   }  
 
 main {
     background-color: var(--main-bg-color);
     padding: 1rem;
     border-radius: 1rem;
+    text-align: center;
 }
 
-ul {
-    list-style: none;
+fieldset {
+    margin-top: 10px;
+    text-align: left;
+    background-color: var(--secondary-color);
+}
+
+legend {
+    padding: 5px;
+    background: var(--tertiary-color);
+    color: var(--bright);
 }
 
 label {
@@ -24,9 +34,15 @@ label {
 input[type="submit"] {
     margin-top: 10px;
     padding: 0.5rem 2rem;
+    color: var(--bright);
+    background-color: var(--dark);
     border: 1px solid var(--tertiary-color);
     border-radius: 1rem;
     font-size: 1.1rem;
+}
+
+#inga {
+    border-top: #342809 1px solid;
 }
 
 @media (min-width: 480px) {
@@ -45,12 +61,12 @@ input[type="submit"] {
         padding: 2rem;
     }
 
-    #tillbehörsbox {
+    #extras {
         display: grid;
-        
+        grid-template-columns: 1fr 1fr;
     }
 
-    #tillbehörsbox label {
-        display: inline-block;
+    #inga {
+        grid-column: 1/-1;
     }
 }
