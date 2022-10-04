@@ -41,6 +41,16 @@ input[type="submit"] {
     font-size: 1.1rem;
 }
 
+.extraserror {
+    border: red solid 1px;
+}
+
+.felmeddelande {
+    color: red;
+    font-weight: bold;
+    font-size: small;
+}
+
 #inga {
     border-top: #342809 1px solid;
 }

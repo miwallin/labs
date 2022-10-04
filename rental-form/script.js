@@ -14,7 +14,7 @@ noExtras.addEventListener('change', () => {
     else {
         extras.forEach(extra => extra.disabled = false);
     }
-  });
+});
 
 function validEmail(email) {
     let re = /([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
@@ -28,23 +28,34 @@ function validPhone(number) {
 
 function handleFormSubmit(event) {
     event.preventDefault();
+    let emsg = document.querySelector("#mailfel");
     if (!validEmail(document.querySelector("#email").value)) {
-        console.log("Invalid email");
+        emsg.textContent = "Ogiltig email-adress";
     }
-    else {console.log("Valid email");}
+    else {emsg.textContent = "";}
+    emsg = document.querySelector("#telfel");
     if (!validPhone(document.querySelector("#telefon").value)) {
-        console.log("Invalid phone number");
+        emsg.textContent = "Ogiltigt telefonnummer";
     }
-    else {console.log("Valid phone number");}
+    else {emsg.textContent = "";}
+    let box = document.querySelector('#extras');
+    emsg = document.querySelector("#tbfel");
     if (!noExtras.checked){
         let additionals = [];
         extras.forEach(extra => {
             if (extra.checked) {
                 additionals.push(extra.value);
+                box.removeAttribute("class", "extraserror");
+                emsg.textContent = "";
             }
         });
         if (additionals.length === 0) {
-            console.log("Pick something");
+            box.setAttribute("class", "extraserror");
+            emsg.textContent = "Välj minst ett av alternativen"
         }
+    }
+    else {
+        box.removeAttribute("class", "extraserror");
+        emsg.textContent = "";
     }
 }

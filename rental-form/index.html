@@ -21,7 +21,7 @@
 				<div id="extras">
 					<div>
 						<label for="tb1">
-						<input class="extra" type="checkbox" id="tb1" name="tb1"> Populärt tillbehör.</label> 
+						<input class="extra" type="checkbox" id="tb1" name="tb1"> Populärt tillbehör.</label>
 					</div>
 					<div>
 						<label for="tb2">
@@ -40,24 +40,27 @@
 						<input type="checkbox" id="tb0" name="tb0"> Jag vill inte hyra några tillbehör</label>
 					</div>
 				</div>
+				<div class="felmeddelande" id="tbfel"></div>
 			</fieldset>
 			<fieldset>
 				<legend>Hyresperiod</legend>
 				<label for="startdatum">Hämtdatum</label>
 				<input type="date" name="startdatum" id="startdatum"/>
+				<div class="felmeddelande" id="startfel"></div>
 				<label for="slutdatum">Returdatum</label>
 				<input type="date" name="slutdatum" id="slutdatum"/>
+				<div class="felmeddelande" id="slutfel"></div>
 			</fieldset>
 			<fieldset>
 				<legend>Dina uppgifter</legend>
 				<label for="namn">Namn:</label>
 				<input type="text" id="namn" name="namn" placeholder="Namn" required>
-				<br/>
 				<label for="telefon">Telefon:</label>
 				<input type="tel" id="telefon" name="telefon" placeholder="012-345 67 89" required>
-				<br/>
+				<div class="felmeddelande" id="telfel"></div>
 				<label for="email">Email:</label>
 				<input type="email" id="email" name="email" placeholder="din.email@exempel.se" required>
+				<div class="felmeddelande" id="mailfel"></div>
 			</fieldset>
 			<input type="submit" value="Till betalning">
 		</form>
