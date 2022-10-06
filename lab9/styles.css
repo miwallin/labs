@@ -6,11 +6,29 @@ header {
     margin-bottom: 1rem;
 }
 
+img{
+    border-radius: 1rem;
+}
+
 .linklist {
     display:none;
     list-style: none;
     padding: 5px 0;
     border-radius: 0.5rem;
+}
+
+.shown {
+    display: block;
+}
+
+#navbutton {
+    font-size: 3rem;
+    text-decoration: none;
+    margin-right: 15px;
+    line-height: 1rem;
+    padding: 0px 5px 7px 5px;
+    border-radius: 0.5rem;
+    border: 3px solid black;
 }
 
 #navigation li {
