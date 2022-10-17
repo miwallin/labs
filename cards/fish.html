@@ -11,10 +11,10 @@
         <form>
             <label for="number-of-players"></label>
             <select id="number-of-players">
-                <option value="2">2 players</option>
-                <option value="3">3 players</option>
-                <option value="4">4 players</option>
-                <option value="5">5 players</option>
+                <option value="1">2 players</option>
+                <option value="2">3 players</option>
+                <option value="3">4 players</option>
+                <option value="4">5 players</option>
             </select>
             <button id="startbutton">Start Game</button>
         </form>
@@ -27,6 +27,18 @@
     <div id="lake" class="hide">
     </div>
     <div id="cardholder" class="hide">
+    </div>
+    <div id="ask" class="hide">
+        <form>
+            <label for="from-player">From player: </label>
+            <select id="from-player">
+                <option value="1">Player 1</option>
+            </select>
+            <label for="card-rank">Rank: </label>
+            <select id="card-rank">
+            </select>
+            <button id="askbutton">Ask</button>
+        </form>
     </div>
     <div>
         <a href="five.html">Five</a>

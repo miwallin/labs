@@ -11,3 +11,8 @@ div {
 #start {
     min-height: 80vh;
 }
+
+#lake {
+    background-color: aqua;
+    min-height: 5rem;
+}
