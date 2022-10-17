@@ -1,0 +1,13 @@
+div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.hide {
+    display:none;
+}
+
+#start {
+    min-height: 80vh;
+}

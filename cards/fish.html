@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <link rel="stylesheet" href="fishes.css">
+    <title>Go Fish</title>
+</head>
+<body>
+    <div id="start">
+        <form>
+            <label for="number-of-players"></label>
+            <select id="number-of-players">
+                <option value="2">2 players</option>
+                <option value="3">3 players</option>
+                <option value="4">4 players</option>
+                <option value="5">5 players</option>
+            </select>
+            <button id="startbutton">Start Game</button>
+        </form>
+    </div>
+    <div class="hide">
+        <button id="drawbutton">Draw a Card</button>
+    </div>
+    <div id="opponents" class="hide">
+    </div>
+    <div id="lake" class="hide">
+    </div>
+    <div id="cardholder" class="hide">
+    </div>
+    <div>
+        <a href="five.html">Five</a>
+        <a href="index.html">Home</a>
+    </div>
+    <script src="fish.js"></script>
+</body>
+</html>
