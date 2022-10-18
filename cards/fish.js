@@ -15,7 +15,17 @@ class Player {
     }
 
     removeFromHand(card) {
-        this.hand.pop(card);
+        //this.hand.pop(card);
+    }
+
+    hasRank = (rank) => {
+        const cardsWithRank = this.hand.filter(c => c.value === rank);
+        if (cardsWithRank.length === 0){
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
     updateStats() {
@@ -59,8 +69,25 @@ const startUp = event => {
     });
 };
 
+const onAsk = event => {
+    event.preventDefault();
+    const askedPlayer = document.querySelector('#from-player').value;
+    const askedRank = document.querySelector('#card-rank').value;
+    console.log(askedPlayer);
+    console.log(askedRank);
+    askForRank(askedPlayer, askedRank);
+};
+
+
+const askForRank = (player, rank) => {
+    if (players[player].hasRank(rank)) {
+        console.log('Player has ' + rank + '.');
+    }
+};
+
 const populateAskRanks = () => {
     let rankOptions = document.querySelector('#card-rank');
+    rankOptions.innerHTML = ('');
     let ranksInHand = new Set();
     for (let i = 0; i<players[0].hand.length; i++) {
         ranksInHand.add(players[0].hand[i].value);
@@ -70,7 +97,6 @@ const populateAskRanks = () => {
         opt.setAttribute('value', value);
         opt.textContent = value;
         rankOptions.appendChild(opt);
-
     });
 }
 
@@ -94,8 +120,17 @@ const updateStats = () => {
 
 const getLakeCards = async () => {
     let deckURL = 'https://deckofcardsapi.com/api/deck/' + deckid + '/shuffle/?remaining=true';
-    const data = await fetch(deckURL);
-    return await data.json();
+    const response = await fetch(deckURL);
+    const data =  await response.json();
+    return data;
+};
+
+const goFish = async () => {
+    let fishURL = 'https://deckofcardsapi.com/api/deck/' + deckid + 'draw/?count=1';
+    const response = await fetch(fishURL);
+    const data =  await response.json();
+    const catchOfTheRound = data.cards[0];
+    return catchOfTheRound;
 };
 
 const createPlayers = num => {
@@ -159,4 +194,4 @@ const fetchDeck = async () => {
 };
 
 startGame.addEventListener('submit', startUp);
-askForCard.addEventListener('submit', ask);
+askForCard.addEventListener('submit', onAsk);
