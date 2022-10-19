@@ -14,17 +14,33 @@ class Player {
         this.hand.push(card);
     }
 
-    removeFromHand(card) {
-        //this.hand.pop(card);
+    giveFromHand(rank) {
+        const toGive = this.hand.filter(c => c.value === rank);
+        const newHand = this.hand.filter(c => c.value !== rank);
+        this.hand = newHand;
+        return toGive;
     }
 
-    hasRank = (rank) => {
+    hasRank (rank) {
         const cardsWithRank = this.hand.filter(c => c.value === rank);
         if (cardsWithRank.length === 0){
             return false;
         }
         else {
             return true;
+        }
+    }
+
+    completeRank(rank) {
+        const cardsWithRank = this.hand.filter(c => c.value === rank);
+        if (cardsWithRank.length === 4){
+            const newHand = this.hand.filter(c => c.value !== rank);
+            this.hand = newHand;
+            this.points++;
+            return true;
+        }
+        else {
+            return false;
         }
     }
 
@@ -35,9 +51,10 @@ class Player {
 
 const startGame = document.querySelector('#start > form');
 const askForCard = document.querySelector('#ask > form');
+const lake = document.querySelector('#lake');
 let deckid = '';
 const players = [];
-const incompleteRanks = ['2','3','4','5','6','7','8','9','10','JACK','QUEEN','KING','ACE'];
+//const incompleteRanks = ['2','3','4','5','6','7','8','9','10','JACK','QUEEN','KING','ACE'];
 
 const startUp = event => {
     event.preventDefault();
@@ -47,25 +64,18 @@ const startUp = event => {
         deckid = data.deck_id;
         console.log(deckid);
         createPlayers(playersNum);
-        players.forEach(fetchHand);
-        let start = document.querySelector('#start');
-        start.classList.add('hide');
-        getLakeCards().then(data => {
-            let lake = document.querySelector('#lake');
+        for (p of players) { fetchHand(p) }
+        setTimeout( () => {
+            let start = document.querySelector('#start');
+            start.classList.add('hide');
             lake.classList.remove('hide');
-            lake.innerHTML = ('Cards in Lake: ' + data.remaining );
-            console.log(players);
-            setTimeout( () => {
-                updateStats();
-                getLakeCards().then(data => {
-                    lake.innerHTML = ('Cards in Lake: ' + data.remaining );
-                });
-                populateAskPlayers();
-                populateAskRanks();
-                let askBox = document.querySelector('#ask');
-                askBox.classList.remove('hide');
-            }, 3000);
-        });
+            let askBox = document.querySelector('#ask');
+            askBox.classList.remove('hide');
+            setStats();
+            populateAskPlayers();
+            populateAskRanks();
+            getLakeCards();
+        }, 1000);
     });
 };
 
@@ -73,15 +83,46 @@ const onAsk = event => {
     event.preventDefault();
     const askedPlayer = document.querySelector('#from-player').value;
     const askedRank = document.querySelector('#card-rank').value;
-    console.log(askedPlayer);
-    console.log(askedRank);
-    askForRank(askedPlayer, askedRank);
+    askForRank(askedPlayer, 0, askedRank);
+    for (let i = 1; i<players.length; i++) {
+        let toAsk = i;
+        let whichRank = Math.floor(Math.random() * players[i].numCards);
+        while (toAsk === i) {
+            toAsk = Math.floor(Math.random() * players.length);
+        }
+        if ( (whichRank !== undefined) && (!players[i].completeRank(whichRank)) ) {
+            askForRank(toAsk, i, players[i].hand[whichRank].value);
+        }
+        setTimeout( () => {
+            players[i].updateStats();
+        }, 2000);
+    }
+    setTimeout( () => {
+        populateAskRanks();
+        dealHand(players[0].hand);
+        console.log(players);
+        getLakeCards();
+    }, 1000);
 };
 
-
-const askForRank = (player, rank) => {
-    if (players[player].hasRank(rank)) {
-        console.log('Player has ' + rank + '.');
+const askForRank = (playerAsked, playerAsking, rank) => {
+    console.log(players[playerAsking].name + ' asked ' + players[playerAsked].name + ' for ' + rank + '.');
+    if (players[playerAsked].hasRank(rank)) {
+        console.log(players[playerAsked].name + ' had ' + rank + '.');
+        let cardsWon = players[playerAsked].giveFromHand(rank);
+        cardsWon.forEach(card => { players[playerAsking].addToHand(card)});
+        if (players[playerAsking].completeRank(rank)) {
+            console.log(players[playerAsking].name + ' got all ' + rank + 's.');
+        }
+    }
+    else {
+        goFish().then(catchCard => {
+            players[playerAsking].addToHand(catchCard);
+            console.log(players[playerAsking].name + ' went fishing.');
+            if (players[playerAsking].completeRank(catchCard.value)) {
+                console.log(players[playerAsking].name + ' caught ' + catchCard.value + '.');
+            }
+        });
     }
 };
 
@@ -89,14 +130,16 @@ const populateAskRanks = () => {
     let rankOptions = document.querySelector('#card-rank');
     rankOptions.innerHTML = ('');
     let ranksInHand = new Set();
-    for (let i = 0; i<players[0].hand.length; i++) {
+    for (let i = 0; i<players[0].numCards; i++) {
         ranksInHand.add(players[0].hand[i].value);
     }
     ranksInHand.forEach( value => {
-        let opt = document.createElement('option');
-        opt.setAttribute('value', value);
-        opt.textContent = value;
-        rankOptions.appendChild(opt);
+        if (!players[0].completeRank(value)){
+            let opt = document.createElement('option');
+            opt.setAttribute('value', value);
+            opt.textContent = value;
+            rankOptions.appendChild(opt);
+        }
     });
 }
 
@@ -110,7 +153,7 @@ const populateAskPlayers = () => {
     }
 }
 
-const updateStats = () => {
+const setStats = () => {
     for (let i = 1; i<players.length; i++) {
         let id = '#pl-' + i + '-stats';
         players[i].stats = document.querySelector(id);
@@ -122,13 +165,14 @@ const getLakeCards = async () => {
     let deckURL = 'https://deckofcardsapi.com/api/deck/' + deckid + '/shuffle/?remaining=true';
     const response = await fetch(deckURL);
     const data =  await response.json();
+    lake.innerHTML = ('Cards in Lake: ' + data.remaining );
     return data;
 };
 
 const goFish = async () => {
-    let fishURL = 'https://deckofcardsapi.com/api/deck/' + deckid + 'draw/?count=1';
+    let fishURL = 'https://deckofcardsapi.com/api/deck/' + deckid + '/draw/?count=1';
     const response = await fetch(fishURL);
-    const data =  await response.json();
+    const data = await response.json();
     const catchOfTheRound = data.cards[0];
     return catchOfTheRound;
 };
@@ -170,7 +214,7 @@ const dealHands = (player, hand) => {
     }
 }
 
-const fetchHand = player => {
+const fetchHand = async player => {
     let handURL = '';
     if (players.length <= 2) {
         handURL = 'https://deckofcardsapi.com/api/deck/' + deckid + '/draw/?count=7';
@@ -178,14 +222,12 @@ const fetchHand = player => {
     else {
         handURL = 'https://deckofcardsapi.com/api/deck/' + deckid + '/draw/?count=5';
     }
-    fetch(handURL)
-    .then((response) => response.json())
-    .then((data) => {
-        if (player.name === 'You'){
-            dealHand(data.cards);
-        }
-        dealHands(player, data.cards);
-    });
+    const response = await fetch(handURL);
+    const data = await response.json();
+    if (player.name === 'You'){
+        dealHand(data.cards);
+    }
+    dealHands(player, data.cards);
 };
 
 const fetchDeck = async () => {
