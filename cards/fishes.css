@@ -16,3 +16,17 @@ div {
     background-color: aqua;
     min-height: 5rem;
 }
+
+#round {
+    flex-direction: column;
+    position: fixed;
+    background-color: cadetblue;
+    z-index: 1;
+    padding-top: 25px;
+    left: 10%;
+    top: 10%;
+    width: 50%;
+    height: 60%;
+    margin:auto;
+    overflow: auto;
+}

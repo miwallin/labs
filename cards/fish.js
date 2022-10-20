@@ -52,8 +52,10 @@ class Player {
 const startGame = document.querySelector('#start > form');
 const askForCard = document.querySelector('#ask > form');
 const lake = document.querySelector('#lake');
+const round = document.querySelector('#round');
 let deckid = '';
 const players = [];
+let lakeEmpty = false;
 //const incompleteRanks = ['2','3','4','5','6','7','8','9','10','JACK','QUEEN','KING','ACE'];
 
 const startUp = event => {
@@ -83,46 +85,83 @@ const onAsk = event => {
     event.preventDefault();
     const askedPlayer = document.querySelector('#from-player').value;
     const askedRank = document.querySelector('#card-rank').value;
-    askForRank(askedPlayer, 0, askedRank);
-    for (let i = 1; i<players.length; i++) {
-        let toAsk = i;
-        let whichRank = Math.floor(Math.random() * players[i].numCards);
-        while (toAsk === i) {
-            toAsk = Math.floor(Math.random() * players.length);
-        }
-        if ( (whichRank !== undefined) && (!players[i].completeRank(whichRank)) ) {
-            askForRank(toAsk, i, players[i].hand[whichRank].value);
-        }
-        setTimeout( () => {
-            players[i].updateStats();
-        }, 2000);
-    }
-    setTimeout( () => {
+    round.innerHTML = ('');
+    if ( askForRank(askedPlayer, 0, askedRank) ) {
         populateAskRanks();
         dealHand(players[0].hand);
-        console.log(players);
-        getLakeCards();
-    }, 1000);
+        endRound();
+        return;
+    }
+    if (!lakeEmpty) { 
+        fishing(players[0], true);
+    }
+    for (let i = 1; i<players.length; i++) {
+        let success = true;
+        while (success) {
+            let toAsk = i;
+            let whichRank = Math.floor(Math.random() * players[i].numCards);
+            while (toAsk === i) {
+                toAsk = Math.floor(Math.random() * players.length);
+            }
+            if ( (whichRank !== undefined) && (!players[i].completeRank(whichRank)) ) {
+                success = askForRank(toAsk, i, players[i].hand[whichRank].value);
+            }
+        }
+        if (!lakeEmpty) { 
+            fishing(players[i], false);
+        }
+    }
+    endRound();
+    populateAskRanks();
+    console.log(players);
+};
+
+const fishing = (player, you) => {
+    goFish().then( caughtCard => {
+        getLakeCards().then ( lc  => {
+            player.addToHand(caughtCard);
+            if (player.completeRank(caughtCard.value)) {
+                let caughtText = document.createElement('p');
+                caughtText.textContent = player.name + ' caught ' + caughtCard.value + '.';
+                round.appendChild(caughtText);
+            }
+            if (you) {
+                dealHand(player.hand);
+            }
+            else {
+                player.updateStats();
+            }
+        });
+    });
+};
+
+const endRound = () => {
+    let okButton = document.createElement('button');
+    okButton.textContent = 'OK';
+    okButton.addEventListener('click', () => round.classList.add('hide') );
+    round.appendChild(okButton);
+    round.classList.remove('hide');
 };
 
 const askForRank = (playerAsked, playerAsking, rank) => {
-    console.log(players[playerAsking].name + ' asked ' + players[playerAsked].name + ' for ' + rank + '.');
+    let roundText = document.createElement('p');
+    let roundTextString = players[playerAsking].name + ' asked ' + players[playerAsked].name + ' for ' + rank + '.\n';
     if (players[playerAsked].hasRank(rank)) {
-        console.log(players[playerAsked].name + ' had ' + rank + '.');
+        roundTextString += players[playerAsked].name + ' had ' + rank + '.\n';
         let cardsWon = players[playerAsked].giveFromHand(rank);
         cardsWon.forEach(card => { players[playerAsking].addToHand(card)});
         if (players[playerAsking].completeRank(rank)) {
-            console.log(players[playerAsking].name + ' got all ' + rank + 's.');
+            roundTextString += players[playerAsking].name + ' got all ' + rank + 's.\n';
         }
+        roundText.textContent = roundTextString;
+        round.appendChild(roundText);
+        return true;
     }
     else {
-        goFish().then(catchCard => {
-            players[playerAsking].addToHand(catchCard);
-            console.log(players[playerAsking].name + ' went fishing.');
-            if (players[playerAsking].completeRank(catchCard.value)) {
-                console.log(players[playerAsking].name + ' caught ' + catchCard.value + '.');
-            }
-        });
+        roundTextString += players[playerAsking].name + ' went fishing.\n';
+        roundText.textContent = roundTextString;
+        round.appendChild(roundText);
+        return false;
     }
 };
 
@@ -165,6 +204,11 @@ const getLakeCards = async () => {
     let deckURL = 'https://deckofcardsapi.com/api/deck/' + deckid + '/shuffle/?remaining=true';
     const response = await fetch(deckURL);
     const data =  await response.json();
+    if (data.remaining === 0) {
+        lakeEmpty = true;
+        lake.innerHTML = ('No more fishies.');
+        return 0;
+    }
     lake.innerHTML = ('Cards in Lake: ' + data.remaining );
     return data;
 };
