@@ -56,7 +56,6 @@ const round = document.querySelector('#round');
 let deckid = '';
 const players = [];
 let lakeEmpty = false;
-//const incompleteRanks = ['2','3','4','5','6','7','8','9','10','JACK','QUEEN','KING','ACE'];
 
 const startUp = event => {
     event.preventDefault();
@@ -87,8 +86,9 @@ const onAsk = event => {
     const askedRank = document.querySelector('#card-rank').value;
     round.innerHTML = ('');
     if ( askForRank(askedPlayer, 0, askedRank) ) {
-        populateAskRanks();
         dealHand(players[0].hand);
+        players[askedPlayer].updateStats;
+        populateAskRanks();
         endRound();
         return;
     }
@@ -112,26 +112,59 @@ const onAsk = event => {
         }
     }
     endRound();
-    populateAskRanks();
-    console.log(players);
+    setTimeout( () => {
+        populateAskRanks();
+        console.log(players);
+        checkForWin();
+    }, 1000);
+};
+
+const checkForWin = () => {
+    let totalPiles = 0;
+    const pointsNow = [];
+    console.log(pointsNow);
+    players.forEach( p => {
+        if (p.points >= 8){
+            gameWon(p);
+        }
+        pointsNow.push([p, p.points]);
+        totalPiles += p.points;
+    });
+    pointsNow.sort( (a, b) => a.points - b.points);
+    if (totalPiles >= 8) {
+
+    }
+};
+
+const gameWon = player => {
+    round.innerHTML = ('');
+    let winText = document.createElement('p');
+    winText.textContent = player.name + ' won.';
+    round.appendChild(winText);
+    okButton.textContent = 'OK';
+    okButton.addEventListener('click', () => round.classList.add('hide') );
+    round.appendChild(okButton);
+    round.classList.remove('hide');
 };
 
 const fishing = (player, you) => {
     goFish().then( caughtCard => {
-        getLakeCards().then ( lc  => {
-            player.addToHand(caughtCard);
-            if (player.completeRank(caughtCard.value)) {
-                let caughtText = document.createElement('p');
-                caughtText.textContent = player.name + ' caught ' + caughtCard.value + '.';
-                round.appendChild(caughtText);
-            }
-            if (you) {
-                dealHand(player.hand);
-            }
-            else {
-                player.updateStats();
-            }
-        });
+        if (caughtCard !== undefined) {
+            getLakeCards().then ( lc  => {
+                player.addToHand(caughtCard);
+                if (player.completeRank(caughtCard.value)) {
+                    let caughtText = document.createElement('p');
+                    caughtText.textContent = player.name + ' caught ' + caughtCard.value + '.';
+                    round.appendChild(caughtText);
+                }
+                if (you) {
+                    dealHand(player.hand);
+                }
+                else {
+                    player.updateStats();
+                }
+            });
+        }
     });
 };
 
@@ -157,10 +190,13 @@ const askForRank = (playerAsked, playerAsking, rank) => {
         round.appendChild(roundText);
         return true;
     }
-    else {
+    else if (!lakeEmpty) {
         roundTextString += players[playerAsking].name + ' went fishing.\n';
         roundText.textContent = roundTextString;
         round.appendChild(roundText);
+        return false;
+    }
+    else {
         return false;
     }
 };
@@ -214,6 +250,7 @@ const getLakeCards = async () => {
 };
 
 const goFish = async () => {
+    await delay(Math.floor(Math.random() * 500));
     let fishURL = 'https://deckofcardsapi.com/api/deck/' + deckid + '/draw/?count=1';
     const response = await fetch(fishURL);
     const data = await response.json();
@@ -260,6 +297,7 @@ const dealHands = (player, hand) => {
 
 const fetchHand = async player => {
     let handURL = '';
+    await delay((players.indexOf('player')) * 100);
     if (players.length <= 2) {
         handURL = 'https://deckofcardsapi.com/api/deck/' + deckid + '/draw/?count=7';
     }
@@ -273,6 +311,8 @@ const fetchHand = async player => {
     }
     dealHands(player, data.cards);
 };
+
+const delay = n => new Promise((res) => setTimeout(res, n));
 
 const fetchDeck = async () => {
     const data = await fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1');

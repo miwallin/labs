@@ -15,6 +15,9 @@ div {
 #lake {
     background-color: aqua;
     min-height: 5rem;
+    border-radius: 2rem;
+    width: 50vw;
+    margin: auto;
 }
 
 #round {
@@ -22,11 +25,29 @@ div {
     position: fixed;
     background-color: cadetblue;
     z-index: 1;
-    padding-top: 25px;
-    left: 10%;
-    top: 10%;
+    padding: 0 25px;
+    left: 25%;
+    top: 15;
     width: 50%;
-    height: 60%;
+    height: fit-content;
     margin:auto;
     overflow: auto;
+}
+
+#cardholder {
+    justify-content: flex-start;
+}
+
+#cardholder img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+}
+
+#ask {
+    padding: 1rem;
+}
+
+#ask select {
+    margin-right: 1rem;
 }
