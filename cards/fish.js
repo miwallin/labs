@@ -103,7 +103,7 @@ const onAsk = event => {
             while (toAsk === i) {
                 toAsk = Math.floor(Math.random() * players.length);
             }
-            if ( (whichRank !== undefined) && (!players[i].completeRank(whichRank)) ) {
+            if ( (players[i].hand[whichRank] !== undefined) && (!players[i].completeRank(whichRank)) ) {
                 success = askForRank(toAsk, i, players[i].hand[whichRank].value);
             }
         }
@@ -122,29 +122,42 @@ const onAsk = event => {
 const checkForWin = () => {
     let totalPiles = 0;
     const pointsNow = [];
-    console.log(pointsNow);
     players.forEach( p => {
         if (p.points >= 8){
-            gameWon(p);
+            gameWon(p.name);
         }
-        pointsNow.push([p, p.points]);
+        pointsNow.push([p.name, p.points]);
         totalPiles += p.points;
     });
-    pointsNow.sort( (a, b) => a.points - b.points);
-    if (totalPiles >= 8) {
-
+    pointsNow.sort( (a, b) => b[1] - a[1]);
+    if (players.length >= 2 && totalPiles >= 8) {
+        let lastPts = totalPiles - pointsNow[0][1] - pointsNow[1][1];
+        console.log(lastPts);
+        let leftFor2nd = (14 - totalPiles - lastPts);
+        if (pointsNow[0][1] > (leftFor2nd + pointsNow[1][1])) {
+            gameWon(pointsNow[0][0]);
+        }
     }
 };
 
-const gameWon = player => {
+const gameWon = playerName => {
     round.innerHTML = ('');
     let winText = document.createElement('p');
-    winText.textContent = player.name + ' won.';
+    winText.textContent = playerName + ' won.';
     round.appendChild(winText);
-    okButton.textContent = 'OK';
-    okButton.addEventListener('click', () => round.classList.add('hide') );
-    round.appendChild(okButton);
-    round.classList.remove('hide');
+    endRound();
+    let start = document.querySelector('#start');
+    start.classList.remove('hide');
+    let divList = ['#opponents', '#lake', '#cardholder', '#ask'];
+    for (let i = 0; i < divList.length; i++) {
+        let dDiv = document.querySelector(divList[i]);
+        if (divList[i] !== '#ask') {
+            dDiv.innerHTML = ('');
+        }
+        dDiv.classList.add("hide");
+    }
+    players.splice(0, players.length);
+    lakeEmpty = false;
 };
 
 const fishing = (player, you) => {
@@ -250,7 +263,7 @@ const getLakeCards = async () => {
 };
 
 const goFish = async () => {
-    await delay(Math.floor(Math.random() * 500));
+    await delay(Math.floor(Math.random() * 500) + 200);
     let fishURL = 'https://deckofcardsapi.com/api/deck/' + deckid + '/draw/?count=1';
     const response = await fetch(fishURL);
     const data = await response.json();
@@ -297,7 +310,7 @@ const dealHands = (player, hand) => {
 
 const fetchHand = async player => {
     let handURL = '';
-    await delay((players.indexOf('player')) * 100);
+    await delay((players.indexOf('player')) * 200);
     if (players.length <= 2) {
         handURL = 'https://deckofcardsapi.com/api/deck/' + deckid + '/draw/?count=7';
     }

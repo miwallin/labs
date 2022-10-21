@@ -27,8 +27,9 @@ div {
     z-index: 1;
     padding: 0 25px;
     left: 25%;
-    top: 15;
+    top: 15%;
     width: 50%;
+    min-height: 50%;
     height: fit-content;
     margin:auto;
     overflow: auto;
