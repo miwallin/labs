@@ -1,0 +1,28 @@
+    Customer Jobs:
+	driva en framgångrik skönhetssalong
+	ha kontroll över sina bokningar
+	inte behöva leta efter bokningar/avbokningar
+	
+    Gains:
+	ha en översikt över bokade tider
+	samla bokningar/avbokningar
+	
+    Pains:
+	svårt att hålla reda på tider
+	kunder tappas bort
+	dubbelbokningar
+	avbokningar missas
+	
+	------------------------
+	Products and Services:
+	bygga en sida med ett bokningssystem
+	
+    Gain Creators:
+	instagram-inlogg för att Annas kunder ska kunna logga in lättare
+	möjlighet att skapa nya konton för potentiella kunder som inte har instagram
+	admin-konto för Anna så att hon kan lägga in bokningar som görs via telefon, email och fysiska besök
+	
+    Pain Relievers:
+	går att se vilka tider som är bokade/lediga
+	alla bokningar och avbokningar registreras och samlas
+	går inte att dubbelboka
