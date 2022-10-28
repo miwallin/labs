@@ -2,9 +2,29 @@
 	https://www.ssense.com/en-us/women/activewear
 	
 	Color & Contrast: den genomskinliga top-menyn blir oläslig när den ligger över text/mörkare bilder
-	White Space & Scale: det är plottrigt med jättemycket liten text i sidomenyerna
+	White Space: brist på mellanrum
+	Visual Hierarchy: rubrikerna är små och drar inte till sig uppmärksamhet, drowns in clutter
+	Complexity vs. Simplicity: det är plottrigt med jättemycket text i sidomenyerna
+	Scale: texten är för liten för en 13,3-tumsskärm
 	
 	--------------
 	
+	http://voltaaoalgarve.com/en/
+	
+	Color & Contrast: den ljusblåfärgen på texten i top-menyn och bakgrunden i footern är för ljus för att funka med vit bakgrund/text och det blir svårläsligt 
+	
 	
 	--------------
+	
+	https://www.art.yale.edu/
+	
+	Consistency: det är förmodligen meningen att den ska vara konstnärlig, men denna sidan är rejält inkonsekvent vad gäller layout, textstorlek, färger etc.
+	Visual Hierarchy: ovanstående bidrar också till att det blir svårare att hitta vad man letar efter
+	
+	--------------
+	
+	https://www.vulkanologische-gesellschaft.de/
+	
+	Scale: loggan och namnet tar upp halva vänstermenyn
+	White Space: den högerställda texten i vänstermenyn gör att bara halva utrymmet utnyttjas för allt innehåll förutom namnet, footern ligger ovanpå länkarna
+	
