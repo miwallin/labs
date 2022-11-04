@@ -1,3 +1,28 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.output {
+    background-color: #f1f1f1;
+    max-width: 70vw;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.todo-title {
+    grid-column: 1 / -1;
+    color:midnightblue;
+}
+
 .todo-content {
     display:inline-block;
+    margin-right: 1rem;
+}
+
+.todo {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    text-align: left;
 }
