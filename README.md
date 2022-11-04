@@ -14,3 +14,5 @@ rental-form -> Laborationsuppgift 8<br/>
 lab9 -> Laborationsuppgift 9<br/>
 cards -> Laborationsuppgift 10<br/>
 ux-ui -> Laborationsuppgift 11-13<br/>
+server -> Laborationsuppgift 14<br/>
+to-do -> Laborationsuppgift 15<br/>
