@@ -1,4 +1,5 @@
 const express = require("express");
+const fs = require('fs');
 const path = require('path');
 const todos = require('./data/todo-list.json');
 
@@ -11,11 +12,25 @@ app.get('/api/read-todos', ( req, res ) => {
 });
 
 app.use(express.json());
-app.post('api/write-todos', (req, res) => {
-    console.log(req.body);
-    res.send('ok');
+app.post('/api/write-todos', (req, res) => {
+    const listTodos = getTodos();
+    const newTodo = req.body;
+    listTodos.push(newTodo);
+    saveTodos(listTodos);
+    console.log(newTodo);
+    res.send(newTodo);
 });
 
+const saveTodos = (data) => {
+  const saveData = JSON.stringify(data);
+  fs.writeFileSync('./data/todo-list.json', saveData);
+}
+
+const getTodos = () => {
+  const getData = fs.readFileSync('./data/todo-list.json');
+  return JSON.parse(getData);
+}
+
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}!`);
+  console.log(`Todo list listening on port ${PORT}!`);
 });

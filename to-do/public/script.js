@@ -1,4 +1,7 @@
 const output = document.querySelector('#output');
+const input = document.querySelector('#input');
+const title_input = document.querySelector('#task_title');
+const content_input = document.querySelector('#content');
 
 const todos = [];
 
@@ -47,4 +50,32 @@ const buildTodoDiv = todo => {
   return todoDiv;
 }
 
+const newTodo = (task_title, task_content) => {
+  let id = Date.now();
+  fetch('./api/write-todos', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8'
+    },
+    body: JSON.stringify({
+      task_id: id,
+      task_title,
+      task_content,
+      completion_status: false
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    todos.push(data);
+    buildTodoDiv(data);
+    fetchTodos();
+  })
+}
+
 fetchTodos();
+
+input.addEventListener('submit', e => {
+  e.preventDefault();
+
+  newTodo(title_input.value, content_input.value);
+});
