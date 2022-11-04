@@ -1,20 +1,19 @@
 const express = require("express");
-const fs = require('fs');
+const path = require('path');
 const todos = require('./data/todo-list.json');
 
 const app = express();
-
 const PORT = process.env.PORT || 9999;
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.get('/api/read-todos', ( req, res ) => {
+    res.send(todos);
 });
 
-app.get('/api/read', ( req, res ) => {
-    fs.readFile('./data/todo-list.json', (err, data) => {
-        const todoList = JSON.parse(data);
-        res.send(todoList);
-    });
+app.use(express.json());
+app.post('api/write-todos', (req, res) => {
+    console.log(req.body);
+    res.send('ok');
 });
 
 app.listen(PORT, () => {

@@ -2,21 +2,25 @@
     {
         "task_id": 1,
         "task_title": "do something",
+        "task_content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "completion_status": false
     },
     {
         "task_id": 2,
         "task_title": "do something else",
+        "task_content": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
         "completion_status": false
     },
     {
         "task_id": 3,
         "task_title": "do that other thing",
+        "task_content": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         "completion_status": true
     },
     {
         "task_id": 4,
         "task_title": "do nothing",
+        "task_content": "Nope.",
         "completion_status": false
     }
 ]
