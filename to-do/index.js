@@ -21,13 +21,24 @@ app.post('/api/write-todos', (req, res) => {
     res.send(newTodo);
 });
 
+app.put('/api/update-todos', (req, res) =>{
+  const tID = req.body.task_id;
+  const toUpdate = req.body;
+  const listTodos = getTodos();
+  const filterList = listTodos.filter( todo => todo.task_id != tID);
+  if (listTodos.length === filterList.length) {
+    return res.status(409).send({error: true, msg: 'Todo does not exist'});
+  }
+  filterList.push(toUpdate);
+  saveTodos(filterList);
+  res.send({success: true, msg: 'Todo updated successfully'});
+});
+
 app.delete('/api/delete-todos/:task_id', (req, res) => {
   const todoId = req.params.task_id;
   console.log(todoId);
   const listTodos = getTodos();
   const filterList = listTodos.filter( todo => todo.task_id != todoId);
-  console.log(listTodos);
-  console.log(filterList);
   if (listTodos.length === filterList.length) {
     return res.status(409).send({error: true, msg: 'Todo does not exist'});
   }

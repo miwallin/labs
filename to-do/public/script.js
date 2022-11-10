@@ -38,12 +38,15 @@ const buildTodoDiv = todo => {
 
   let buttonDiv = document.createElement('div');
   buttonDiv.classList.add('button-div');
-  let fButton = document.createElement('button');
-  fButton.textContent = 'Finished';
+  if (!todo.completion_status) {
+    let fButton = document.createElement('button');
+    fButton.textContent = 'Finished';
+    fButton.addEventListener('click', () => finishTodo(todo) );
+    buttonDiv.appendChild(fButton);
+  }
   let dButton = document.createElement('button');
   dButton.textContent = 'Delete';
   dButton.addEventListener('click', () => deleteTodo(todo) );
-  buttonDiv.appendChild(fButton);
   buttonDiv.appendChild(dButton);
 
   todoDiv.appendChild(title);
@@ -85,8 +88,25 @@ const deleteTodo = todo => {
 .then(data => {
   fetchTodos();
 })
-
 }
+
+const finishTodo = todo => {
+  fetch('./api/update-todos', {
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8'
+    },
+    body: JSON.stringify({ 
+      task_id: todo.task_id,
+      task_title: todo.task_title,
+      task_content: todo.task_content,
+      completion_status: true
+     })
+  })
+  .then(res => res.json())
+  .then(data => {
+    fetchTodos();
+  })}
 
 fetchTodos();
 
