@@ -8,9 +8,11 @@ const todos = [];
 const fetchTodos = async () => {
   const res = await fetch('./api/read-todos');
   const data = await res.json();
+  if (todos.length !== 0) {
+    todos.splice(0,todos.length);
+  }
   data.forEach(todo => {
     todos.push(todo);
-    console.log(todo);
   });
   console.log(todos);
   buildTodoList();
@@ -40,6 +42,7 @@ const buildTodoDiv = todo => {
   fButton.textContent = 'Finished';
   let dButton = document.createElement('button');
   dButton.textContent = 'Delete';
+  dButton.addEventListener('click', () => deleteTodo(todo) );
   buttonDiv.appendChild(fButton);
   buttonDiv.appendChild(dButton);
 
@@ -66,10 +69,23 @@ const newTodo = (task_title, task_content) => {
   })
   .then(res => res.json())
   .then(data => {
-    todos.push(data);
-    buildTodoDiv(data);
     fetchTodos();
   })
+}
+
+const deleteTodo = todo => {
+  let deleteURI = './api/delete-todos/' + todo.task_id;
+  fetch(deleteURI, {
+  method: 'DELETE',
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8'
+  },
+  body: JSON.stringify({ task_id: todo.task_id })
+})
+.then(data => {
+  fetchTodos();
+})
+
 }
 
 fetchTodos();

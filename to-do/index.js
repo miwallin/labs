@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 9999;
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/api/read-todos', ( req, res ) => {
-    res.send(todos);
+    res.send(getTodos());
 });
 
 app.use(express.json());
@@ -19,6 +19,20 @@ app.post('/api/write-todos', (req, res) => {
     saveTodos(listTodos);
     console.log(newTodo);
     res.send(newTodo);
+});
+
+app.delete('/api/delete-todos/:task_id', (req, res) => {
+  const todoId = req.params.task_id;
+  console.log(todoId);
+  const listTodos = getTodos();
+  const filterList = listTodos.filter( todo => todo.task_id != todoId);
+  console.log(listTodos);
+  console.log(filterList);
+  if (listTodos.length === filterList.length) {
+    return res.status(409).send({error: true, msg: 'Todo does not exist'});
+  }
+  saveTodos(filterList);
+  res.send({success: true, msg: 'Todo removed successfully'});
 });
 
 const saveTodos = (data) => {
