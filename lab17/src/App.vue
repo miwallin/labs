@@ -1,20 +1,20 @@
 <template>
-  <Header></Header>
-  <HelloWorld headline="Eyecatching Headline"/>
-  <Footer></Footer>
+  <PageHeader></PageHeader>
+  <MainSection headline="Eyecatching Headline"/>
+  <PageFooter></PageFooter>
 </template>
 
 <script>
-import Footer from './components/Footer.vue'
-import Header from './components/Header.vue'
-import HelloWorld from './components/HelloWorld.vue'
+import PageFooter from './components/PageFooter.vue'
+import PageHeader from './components/PageHeader.vue'
+import MainSection from './components/MainSection.vue'
 
 export default {
   name: 'App',
   components: {
-    Footer,
-    Header,
-    HelloWorld
+    PageFooter,
+    PageHeader,
+    MainSection
   }
 }
 </script>
