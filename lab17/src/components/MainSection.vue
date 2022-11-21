@@ -30,7 +30,7 @@ export default {
   display: flex;
 }
 .hero div {
-  margin: 1rem 0;
+  margin: 0 1rem;
 }
 img {
   max-height: 80vh;
