@@ -18,3 +18,5 @@ server -> Laborationsuppgift 14<br/>
 to-do -> Laborationsuppgift 15 & 16<br/>
 lab17 -> Laborationsuppgift 17<br/>
 log-in-form-2 -> Laborationsuppgift 18<br/>
+blog -> Laborationsuppgift 19<br/>
+coffee-machines -> Laborationsuppgift 20<br/>
