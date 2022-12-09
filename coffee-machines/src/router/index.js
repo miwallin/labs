@@ -14,7 +14,7 @@ const router = createRouter({
     {
       path: '/products',
       name: 'products',
-      component: ProductView.vue
+      component: ProductView
     },
     {
       path: '/checkout',
