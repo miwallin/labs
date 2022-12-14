@@ -5,49 +5,49 @@
           "name": "Café style",
           "description": "Café style espresso machine.",
           "price": 40000,
-          "imgUrl": "../assets/cafe-style-espresso.jpg"
+          "imgUrl": "../src/assets/cafe-style-espresso.jpg"
         },
         {
             "id": "1002",
-            "name": "Espresso machine 1",
+            "name": "Espresso 1",
             "description": "Espresso machine, stainless steel.",
             "price": 7000,
-            "imgUrl": "../assets/espresso-single.jpg"
+            "imgUrl": "../src/assets/espresso-single.jpg"
         },
         {
             "id": "1003",
-            "name": "Espresso machine 2",
+            "name": "Espresso 2",
             "description": "Espresso machine, plastic.",
             "price": 2000,
-            "imgUrl": "../assets/espresso-single-2.jpg"
+            "imgUrl": "../src/assets/espresso-singe-2.jpg"
         },
         {
             "id": "1004",
-            "name": "Espresso machine 3",
+            "name": "Espresso 3",
             "description": "Espresso machine, wood paneling, baby blue, 24 carat gold inlays.",
             "price": 115000,
-            "imgUrl": "../assets/marzocco-gs3.jpg"
+            "imgUrl": "../src/assets/marzocco-gs3.jpg"
         },
         {
             "id": "1005",
-            "name": "Drip brew vacuum pot",
+            "name": "Drip brew",
             "description": "Drip brew vacuum pot, glass.",
             "price": 1500,
-            "imgUrl": "../assets/drip-brew-vacuum-pot.jpg"
+            "imgUrl": "../src/assets/drip-brew-vacuum-pot.jpg"
         },
         {
             "id": "1006",
             "name": "Vintage style",
             "description": "Vintage style drip brew vacuum pot.",
             "price": 3000,
-            "imgUrl": "../assets/vintage-vacuum.jpg"
+            "imgUrl": "../src/assets/vintage-vacuum.jpg"
         },
         {
             "id": "1007",
             "name": "Moka pot",
             "description": "Classic style moka pot.",
             "price": 500,
-            "imgUrl": "../assets/moka-pot.jpg"
+            "imgUrl": "../src/assets/moka-pot.jpg"
         }
     ]
 }

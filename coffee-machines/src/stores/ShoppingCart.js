@@ -2,8 +2,19 @@ import { defineStore } from 'pinia'
 
 export const useShoppingCart = defineStore( 'shoppingCart', {
     state: () => ({
-        products: [
-            {id: '1', name: "Kaffemaskin 1", pris: "999"}
-        ]
-    })
+        cart: [],
+    }),
+    actions: {
+        addOneProduct(productId) {
+            this.cart.push(productId)
+        }
+    },
+    getters: {
+        cartCount() {
+            return this.cart.length
+        },
+        getCart() {
+            return this.cart
+        }
+    }
 })
