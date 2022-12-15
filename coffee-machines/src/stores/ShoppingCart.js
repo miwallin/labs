@@ -53,5 +53,14 @@ export const useShoppingCart = defineStore( 'shoppingCart', () => {
         return i
     })
 
-    return { cart, products, addOneProduct, addProducts, removeProduct, getProducts, cartCount }
+    const totalPrice = computed( () => {
+        let i = 0;
+        cart.value.forEach (function(value, key) {
+            let prod = products.value.filter(p => p.id === key)
+            i = i + prod[0].price * Number.parseInt(value);
+        })
+        return i
+    })
+
+    return { cart, products, addOneProduct, addProducts, removeProduct, getProducts, cartCount, totalPrice }
 })

@@ -41,7 +41,7 @@
     getProduct()
 </script>
 
-<style scope>
+<style scoped>
 .wrapper {
     display:flex;
     justify-content: space-around;

@@ -1,7 +1,7 @@
 <template>
     <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/products">Products</RouterLink>
+        <RouterLink class="page-link" to="/">Home</RouterLink>
+        <RouterLink class="page-link" to="/products">Products</RouterLink>
         <RouterLink to="/checkout">
           <div id="cart-link">
             <span id="cart-status">{{ cartCount }}</span>
@@ -23,6 +23,9 @@ const { cartCount } = storeToRefs(cart)
 nav {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  background-color: lightgrey;
+  margin-bottom: 5px;
 }
 nav a {
   font-size: large;
@@ -32,22 +35,24 @@ img {
   width: 25px;
   height: 25px;
 }
+.page-link, #cart-link {
+  padding: 5px 0.75rem;
+}
 #cart-link {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: burlywood;
-  padding: 5px;
 }
 #cart-status {
-  background-color: saddlebrown;
+  background-color: rgb(80, 40, 10);
   color: white;
   font-size: smaller;
   font-weight: bold;
   border-radius: 9px;
-  padding: 0 1px;
+  padding: 1px 3px;
 }
-@media (max-width: 800px) {
+@media (max-width: 960px) {
   nav a {
     margin-left: 3rem;
   }

@@ -7,7 +7,7 @@
         :product="p"
       />
     </div>
-    <p v-else>No products to show</p>
+    <p class="no-shows" v-else>No products to show</p>
   </div>
 </template>
 
