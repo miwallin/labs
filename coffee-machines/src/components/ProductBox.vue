@@ -15,7 +15,10 @@
                 }">
                 <button>Details</button>
             </RouterLink>
-            <button @click="cart.addOneProduct(product.id)"><img src="@/assets/shopping-cart.png" /> Buy</button>
+            <button @click="cart.addOneProduct(product)">
+                <img src="@/assets/shopping-cart.png" />
+                 Buy
+            </button>
         </div> 
     </div>
 </template>

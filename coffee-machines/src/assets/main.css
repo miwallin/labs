@@ -11,6 +11,7 @@ button {
 
 a {
   text-decoration: none;
+  color: rgb(80, 40, 10);
 }
 
 .image-holder img, .image-box img {
