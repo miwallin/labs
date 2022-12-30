@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar login={login} signIn={signIn}/>
+      <Navbar login={login} signIn={signIn} />
       <BookList books={books} />
     </div>
   );

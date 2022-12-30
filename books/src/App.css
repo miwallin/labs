@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.App-header {
+.navbar-container {
   background-color: #282c34;
   min-height: 10vh;
   display: flex;
@@ -12,18 +12,27 @@
   color: greenyellow;
 }
 
+.list-container {
+  width: fit-content;
+  margin: 0 auto;
+}
+
 .book-post {
   display: flex;
   align-items: center;
-  margin: 1rem;
+  margin: 0.5rem 0;
+  padding: 1rem;
+  border: 1px solid black;
 }
 
 .book-text {
   display: flex;
   flex-direction: column;
   margin-left: 2rem;
+  margin-right: 1rem;
+  text-align: left;
 }
 
-.book-chosen {
-  background-color: cornsilk;
+.selected {
+  background-color: greenyellow;
 }

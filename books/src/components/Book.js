@@ -1,13 +1,19 @@
+import { useState } from "react"
+
 const Book = ({book}) => {
 
-    const coverLink = 'https://covers.openlibrary.org/b/olid/' + book.ol + '-M.jpg'
-  
+    const coverLink = 'https://covers.openlibrary.org/b/olid/' + book.ol + '-M.jpg';
+    const [selected, isSelected] = useState(false);
+
     return (
-        <div className="book-post">
-            <img src={coverLink} height="120px" width="80px" />
+        <div 
+            className={`book-post ${selected ? 'selected' : ''}`}  
+            onClick={() => { isSelected(chosen => !chosen) }}
+        >
+            <img src={coverLink} height="120px" width="80px" alt="omslagsbild" />
             <div className="book-text">
-                <h4>{book.title}</h4>
-                <p>av {book.author}.</p>
+                <h3>{book.title}</h3>
+                <span>av {book.author}.</span>
                 <p>Första utgåva: {book.year_written}</p>
             </div>
         </div>

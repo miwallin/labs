@@ -6,8 +6,7 @@ const BookList = ({books}) => {
     }
 
     return (
-        <div>
-            <h2>Boklista</h2>
+        <div className="list-container">
             {
                 books && books.map(book => <Book key={book.ol} book={book} />)
             }
