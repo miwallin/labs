@@ -14,7 +14,14 @@
 
 .book-post {
   display: flex;
+  align-items: center;
+  margin: 1rem;
+}
+
+.book-text {
+  display: flex;
   flex-direction: column;
+  margin-left: 2rem;
 }
 
 .book-chosen {

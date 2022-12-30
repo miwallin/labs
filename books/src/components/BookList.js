@@ -9,7 +9,7 @@ const BookList = ({books}) => {
         <div>
             <h2>Boklista</h2>
             {
-                books && books.map(book => <Book key={book.id} book={book}/>)
+                books && books.map(book => <Book key={book.ol} book={book} />)
             }
         </div>
     )
