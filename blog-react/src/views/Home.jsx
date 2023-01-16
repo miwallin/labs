@@ -1,4 +1,4 @@
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, Link } from 'react-router-dom'
 
 const Home = () => {
 
@@ -6,13 +6,15 @@ const Home = () => {
     
     return (
         <div className="Home">
-            Home
             {
-                posts.map(post => (
+            posts.map(post => (
+                <Link to={'/post/'+ post.id} className="post-link" key={post.id}>
                     <div className="post-container">
                         <h3>{post.title}</h3>
+                        <p>{post.body}</p>
                     </div>
-                ))
+                </Link>
+            ))
             }
         </div>
     )
