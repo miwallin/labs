@@ -45,15 +45,13 @@ function App() {
         <h1>Todolist</h1>
         { todos.length > 0 && <button onClick={ setShowModal }>Remove All</button>}
       </div>
-      <div className="list-container">
-        <TodoList 
-          todos={todos} 
-          changeTodo={changeTodo} 
-          removeTodo={removeTodo} 
-          toggleComplete={toggleComplete} 
-        />
-        <AddTodoForm addTodo={addTodo} />
-      </div>
+      <TodoList 
+        todos={todos} 
+        changeTodo={changeTodo} 
+        removeTodo={removeTodo} 
+        toggleComplete={toggleComplete} 
+      />
+      <AddTodoForm addTodo={addTodo} />
       { showModal && <Modal 
         message={"Are you sure you want to remove all todos?"} 
         functionOnYes={removeTodos} 

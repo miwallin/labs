@@ -9,7 +9,7 @@ const TodoList = ({ todos, changeTodo, removeTodo, toggleComplete }) => {
   )
 
   return (
-    <div>
+    <div className="list-container">
         {
           todos && todos.map(todo => <TodoItem
             key={todo.id}

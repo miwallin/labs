@@ -15,18 +15,10 @@
   -webkit-text-size-adjust: 100%;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 1rem;
   font-size: 1rem;
   font-weight: 500;
   font-family: inherit;
