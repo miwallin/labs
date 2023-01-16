@@ -33,13 +33,13 @@ const Write = () => {
 }
 export default Write
 
-export const WriteAction = async ({ request }) => {
+export const writeAction = async ({ request }) => {
     const formData = await request.formData();
     const blogPost = {
         title: formData.get("title"),
         content: formData.get("content")
     }
-    
+
     if (blogPost.content.length < 15) {
       return { error: "Post must be longer than 15 characters" };
     }

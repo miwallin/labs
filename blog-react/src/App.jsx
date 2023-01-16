@@ -1,6 +1,6 @@
 import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { WriteAction } from './views/Write'
+import { writeAction } from './views/Write'
 import Root from './layouts/Root'
 //views
 import Home from './views/Home'
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
       {
         path: "write",
         element: <Write />,
-        action: WriteAction
+        action: writeAction
       },
       {
         path: "post/:id",
