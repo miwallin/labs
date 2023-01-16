@@ -21,3 +21,5 @@ log-in-form-2 -> Laborationsuppgift 18<br/>
 blog -> Laborationsuppgift 19<br/>
 coffee-machines -> Laborationsuppgift 20<br/>
 books -> Laborationsuppgift 21<br/>
+todos -> Laborationsuppgift 22<br/>
+blog-react -> Laborationsuppgift 23<br/>
